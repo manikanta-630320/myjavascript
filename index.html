@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I love you Priya ❤️</title>
+<style>
+:root{
+  --bg: #0f1724;
+  --accent: #ff416c;
+  --accent-2: #ffafbd;
+  --text: #fff;
+}
+
+html, body{
+  height:100%;
+  margin:0;
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: radial-gradient(1200px 600px at 10% 20%, rgba(255,65,108,0.06), transparent),
+              linear-gradient(120deg, rgba(10,12,20,1) 0%, var(--bg) 100%);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card{
+  width: min(880px, 96vw);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+  padding: clamp(22px, 3.6vw, 44px);
+  display: flex;
+  gap: clamp(20px, 3vw, 40px);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+  flex-wrap: wrap; /* important for responsive scaling */
+}
+
+.left, .right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left{
+  flex: 0 0 auto;
+  margin-bottom: 0;
+}
+
+.right{
+  flex: 1 1 360px;
+  gap: 12px;
+  text-align: center; /* center text for mobile too */
+}
+
+/* Heart styles */
+.heart-wrap{
+  width: 220px;
+  height: 220px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  cursor:pointer;
+  transition: transform .35s ease;
+  position: relative;
+}
+
+.heart-wrap::before{
+  content:'';
+  position:absolute;
+  inset: -16px;
+  border-radius:50%;
+  background: radial-gradient(circle at 30% 20%, rgba(255,175,189,0.10), transparent 20%),
+              radial-gradient(circle at 70% 80%, rgba(255,65,108,0.06), transparent 25%);
+  filter: blur(18px);
+  opacity:0.9;
+  pointer-events:none;
+}
+
+.heart{
+  width:120px;
+  height:120px;
+  position:relative;
+  display:inline-block;
+}
+
+.heart::before,
+.heart::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:0;
+  width:60px;
+  height:96px;
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  border-radius:60px 60px 0 0;
+  transform-origin:50% 100%;
+}
+
+.heart::before{ transform: translateX(-50%) rotate(-45deg); }
+.heart::after{ transform: translateX(-50%) rotate(45deg); }
+
+.heart .shine{
+  position:absolute;
+  inset:12% 18% 56% 18%;
+  border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45), rgba(255,255,255,0.08) 40%, transparent 60%);
+}
+
+/* Heart beat animation */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.12); }
+  28% { transform: scale(0.95); }
+  42% { transform: scale(1.05); }
+  70% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes ring {
+  0% { box-shadow: 0 0 0 0 rgba(255,65,108,0.45); opacity:0.9; }
+  70% { box-shadow: 0 0 0 28px rgba(255,65,108,0.03); opacity:0.3; }
+  100% { box-shadow: 0 0 0 56px rgba(255,65,108,0); opacity:0; }
+}
+
+.heart-wrap.beat { 
+  transform: scale(1.02); 
+  box-shadow: 0 8px 28px rgba(255,65,108,0.08), inset 0 0 40px rgba(255,175,189,0.02);
+}
+
+.heart-wrap.beat .heart { animation: heartbeat 1.05s ease-in-out infinite; }
+
+.heart-wrap.beat::after{
+  content:'';
+  position:absolute;
+  inset:-8px;
+  border-radius:50%;
+  animation: ring 1.35s infinite;
+}
+
+/* Text */
+.subtitle{ font-size:0.95rem; color: #ffd6e0; font-weight:600; }
+.title{
+  font-size: clamp(28px, 4.4vw, 44px);
+  font-weight:800;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color: transparent;
+  text-shadow: 0 6px 20px rgba(255,65,108,0.08);
+  margin:0;
+}
+.message{
+  font-size:1.05rem;
+  color:#e9dfe7;
+  max-width:62ch;
+  margin-top:6px;
+}
+.name{ font-weight:800; color:var(--accent); }
+
+/* Audio player */
+audio{
+  margin-top:12px;
+  width:100%;
+}
+
+/* Responsive */
+@media (max-width:900px){
+  .card{ flex-direction: column; align-items: center; gap: 24px; margin-top: 7rem;}
+  .left{ order:1; margin-bottom: 0; }
+  .right{ order:2; text-align:center; width:100%; }
+  .heart-wrap{ width:180px; height:180px; }
+  .title{ font-size:2.2rem; }
+  .subtitle{ font-size:0.85rem; }
+  .message{ font-size:0.95rem; max-width:90%; }
+  audio{ width:90%; }
+}
+
+@media (max-width:480px){
+  .heart-wrap{ width:140px; height:140px; }
+  .title{ font-size:1.8rem; }
+  .message{ font-size:0.9rem; }
+  .subtitle{ font-size:0.75rem; }
+  audio{ width:95%; }
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="left">
+    <button class="heart-wrap" id="heartBtn" aria-label="Tap to make heart beat">
+      <span class="heart"><span class="shine"></span></span>
+    </button>
+  </div>
+  <div class="right">
+    <div class="subtitle">For someone special</div>
+    <h1 class="title">I love you <span class="name">Priya</span></h1>
+    <p class="message">Every beat is for you. Listen to this song and feel my love.</p>
+    <audio controls loop autoplay>
+      <source src="/audios/Oh Priya Priya - SenSongsmp3.Co.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <div style="margin-top:12px; font-size:0.9rem; color:#ffdfe7; opacity:0.92;">
+      I LOVE YOU SO MUCH BANGARAM....
+    </div>
+  </div>
+</div>
+
+<script>
+const heartBtn = document.getElementById('heartBtn');
+const heartWrap = heartBtn;
+let autoBeat = true;
+let intervalId = null;
+
+function startAutoBeat(){
+  stopAutoBeat();
+  heartWrap.classList.add('beat');
+  intervalId = setInterval(()=> {
+    heartWrap.classList.remove('beat');
+    setTimeout(()=> heartWrap.classList.add('beat'), 150);
+  }, 1600);
+}
+
+function stopAutoBeat(){
+  if(intervalId) clearInterval(intervalId);
+  intervalId=null;
+  heartWrap.classList.remove('beat');
+}
+
+startAutoBeat();
+
+heartBtn.addEventListener('click', ()=>{
+  heartWrap.classList.add('beat');
+  setTimeout(()=> { if(!autoBeat) heartWrap.classList.remove('beat'); }, 900);
+});
+
+heartBtn.addEventListener('dblclick', ()=>{
+  autoBeat = !autoBeat;
+  heartBtn.setAttribute('aria-pressed', String(autoBeat));
+  if(autoBeat) startAutoBeat();
+  else stopAutoBeat();
+});
+</script>
+
+</body>
+</html>
